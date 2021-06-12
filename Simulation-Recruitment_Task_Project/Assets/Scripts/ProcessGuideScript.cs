@@ -61,5 +61,12 @@ public class ProcessGuideScript : MonoBehaviour
                 AgentsList.Add(Instantiate(AgentTemplate, transform));
             }
         }
+        for(int i = 0; i < AgentsList.Count; i++)
+        {
+            if (AgentsList[i] == null)
+            {
+                AgentsList.RemoveAt(i);
+            }
+        }
     }
 }
