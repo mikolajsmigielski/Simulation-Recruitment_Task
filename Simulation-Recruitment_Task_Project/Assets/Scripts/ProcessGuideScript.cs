@@ -27,8 +27,6 @@ public class ProcessGuideScript : MonoBehaviour
                 TimeToSpawn = 10;
             }
         }
-        AgentsList.Add(Instantiate(AgentTemplate, transform));
-        time -= Time.deltaTime;
     }
 
     // Update is called once per frame
