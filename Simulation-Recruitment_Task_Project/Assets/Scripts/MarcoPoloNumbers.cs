@@ -19,6 +19,10 @@ public class MarcoPoloNumbers : MonoBehaviour
             {
                 Debug.Log("Polo");
             }
+            if (i % 3 == 0 && i % 5 == 0)
+            {
+                Debug.Log("Marco Polo");
+            }
             
         }
     }
