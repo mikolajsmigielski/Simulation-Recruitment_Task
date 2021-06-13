@@ -6,19 +6,23 @@ public class AgentHealthAndName : MonoBehaviour
 {
     public int Health = 3;
     public string Name;
+    public bool Selected = false;
+    public UIManagerScript UIMS;
     List<string> NamesList = new List<string>() { "James", "Napoleon", "Gaby", "Victoria", "Johny" };
     bool DamageWasTaken = false;
     void Start()
     {
         Name = NamesList[(int)Random.Range(0.0f, 5.0f)];
-        Debug.Log("My name is:");
-        Debug.Log(Name);
+        UIMS = FindObjectOfType<UIManagerScript>();
     }
 
-    // Update is called once per frame
     void Update()
     {
-        
+        if (Selected == true && UIMS.NewWasSelected == true)
+        {
+            Selected = false;
+            UIMS.NewWasSelected = false;
+        }
     }
     void TakeDamage()
     {

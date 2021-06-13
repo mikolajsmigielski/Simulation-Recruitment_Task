@@ -8,14 +8,14 @@ public class Moving : MonoBehaviour
     Vector3 NewPosition = new Vector3(0.0f, 1.0f, 0.0f);
     Vector3 CurrentPosition = new Vector3();
     public NavMeshAgent NavigationAgent;
-    // Start is called before the first frame update
+    
     void Start()
     {
         CurrentPosition = transform.position;
         NavigationAgent.SetDestination(NewPosition);
     }
 
-    // Update is called once per frame
+    
     void Update()
     {
         

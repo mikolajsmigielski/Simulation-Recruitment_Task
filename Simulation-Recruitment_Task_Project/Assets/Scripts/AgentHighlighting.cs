@@ -6,13 +6,15 @@ public class AgentHighlighting : MonoBehaviour
 {
     public Light Highlighting;
     public bool Selected = false;
-    // Start is called before the first frame update
+    public UIManagerScript UIMS;
+    
     void Start()
     {
         Highlighting.intensity = 0;
+        UIMS = FindObjectOfType<UIManagerScript>();
     }
 
-    // Update is called once per frame
+    
     void Update()
     {
         if (Selected == true)
@@ -22,6 +24,10 @@ public class AgentHighlighting : MonoBehaviour
         if (Selected == false)
         {
             Highlighting.intensity = 0;
+        }
+        if (Selected == true && UIMS.NewWasSelected == true)
+        {
+            Selected = false;
         }
     }
 }
