@@ -12,19 +12,19 @@ public class AgentHealthAndName : MonoBehaviour
     bool DamageWasTaken = false;
     void Start()
     {
-        Name = NamesList[(int)Random.Range(0.0f, 5.0f)];
-        UIMS = FindObjectOfType<UIManagerScript>();
+        Name = NamesList[(int)Random.Range(0.0f, 5.0f)];//select name 
+        UIMS = FindObjectOfType<UIManagerScript>();//get UIManagerScript from scene
     }
 
     void Update()
     {
-        if (Selected == true && UIMS.NewWasSelected == true)
+        if (Selected == true && UIMS.NewWasSelected == true)// if this agent is selected and new was selected, then set selected and UIMS.NewWasSelected to false
         {
             Selected = false;
             UIMS.NewWasSelected = false;
         }
     }
-    void TakeDamage()
+    void TakeDamage()//function for taking damage and destroying object
     {
         if (Health > 0)
         {
@@ -37,15 +37,15 @@ public class AgentHealthAndName : MonoBehaviour
         
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter(Collider other)// when collision with other agent, deliver damage
     {
         if(other.CompareTag("Agent") == true && DamageWasTaken == false)
         {
             TakeDamage();
-            DamageWasTaken = true;
+            DamageWasTaken = true;//to avoid dealing to much damage
         }
     }
-    private void OnTriggerExit(Collider other)
+    private void OnTriggerExit(Collider other)//when colision is over, set DamageWasTaken to false
     {
         if (other.CompareTag("Agent") == true && DamageWasTaken == true)
         {

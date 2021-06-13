@@ -12,6 +12,7 @@ public class ProcessGuideScript : MonoBehaviour
     
     void Start()
     {
+        //check and set time to numbers from range 2 to 10
         if (TimeToSpawn > 2 && TimeToSpawn < 10)
         {
             time = TimeToSpawn;
@@ -32,6 +33,7 @@ public class ProcessGuideScript : MonoBehaviour
     
     void Update()
     {
+        //check and set time to numbers from range 2 to 10
         if (TimeToSpawn > 2 && TimeToSpawn < 10)
         {
             time = TimeToSpawn;
@@ -47,10 +49,13 @@ public class ProcessGuideScript : MonoBehaviour
                 TimeToSpawn = 10;
             }
         }
+        //Count down time
         if (time > 0)
         {
             time -= Time.deltaTime;
         }
+
+        // if time is equal or less then 0, spawn agent, and add agent to list
         if (time <= 0)
         {
             time = TimeToSpawn;
@@ -59,7 +64,8 @@ public class ProcessGuideScript : MonoBehaviour
                 AgentsList.Add(Instantiate(AgentTemplate, transform));
             }
         }
-        for(int i = 0; i < AgentsList.Count; i++)
+        //Check for empty spaces in the list
+        for (int i = 0; i < AgentsList.Count; i++)
         {
             if (AgentsList[i] == null)
             {

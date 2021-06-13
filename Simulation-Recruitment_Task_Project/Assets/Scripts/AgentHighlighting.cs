@@ -10,8 +10,8 @@ public class AgentHighlighting : MonoBehaviour
     
     void Start()
     {
-        Highlighting.intensity = 0;
-        UIMS = FindObjectOfType<UIManagerScript>();
+        Highlighting.intensity = 0;//set light intensity to 0
+        UIMS = FindObjectOfType<UIManagerScript>();// get UiManagerScript from scene
     }
 
     
@@ -19,15 +19,14 @@ public class AgentHighlighting : MonoBehaviour
     {
         if (Selected == true)
         {
-            Highlighting.intensity = 1;
+            Highlighting.intensity = 1;//if agent was selected, set light intensity to 1
         }
-        if (Selected == false)
-        {
-            Highlighting.intensity = 0;
-        }
+        
         if (Selected == true && UIMS.NewWasSelected == true)
         {
             Selected = false;
+            Highlighting.intensity = 0;
+            //if agent was unselected, set light intensity to 0
         }
     }
 }

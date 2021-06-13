@@ -12,19 +12,16 @@ public class UIManagerScript : MonoBehaviour
     public Camera PlayerCamera;
     public bool NewWasSelected = false;
     
-    
-
-    
     void Update()
     {
-        if (Input.GetButtonDown("Fire1"))
+        if (Input.GetButtonDown("Fire1"))//when main mouse key down, use function to select object
         {
             SelectionBeam();
-            //DiselectionBeam();
+            
         }
     }
 
-    void DiselectionBeam()
+    void DiselectionBeam()//disselecting function, similar to SelectionBeam
     {
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
@@ -53,27 +50,24 @@ public class UIManagerScript : MonoBehaviour
 
     void SelectionBeam()
     {
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);//create ray from mouse position
         RaycastHit hit;
-        if(Physics.Raycast(ray, out hit) == true)
+        if(Physics.Raycast(ray, out hit) == true)// if something was hit by ray, then
         {
-            Transform hitObject = hit.transform;
-            AgentHighlighting AgentLight = hitObject.GetComponent<AgentHighlighting>();
-            AgentHealthAndName SelectAgent = hitObject.GetComponent<AgentHealthAndName>();
-            if (SelectAgent != null && SelectAgent.Selected == false)
+            Transform hitObject = hit.transform;//get object transform
+            AgentHighlighting AgentLight = hitObject.GetComponent<AgentHighlighting>();// get acess to component AgentHighlighting
+            AgentHealthAndName SelectAgent = hitObject.GetComponent<AgentHealthAndName>();// get acess to component AgentHealthAndName
+            if (SelectAgent != null && SelectAgent.Selected == false)// if selected agent was not selected, then
             {
-                NewWasSelected = true;
+                NewWasSelected = true;// set that new object wast selected
+                NameDisplay.text = SelectAgent.Name;//display agent name on screen
+                HealthDisplay.text = SelectAgent.Health.ToString();//Display agent health on screen
+                SelectAgent.Selected = true;// set that this agent was selected
                 
-                if (hitObject.CompareTag("Agent") == true)
-                {
-                    NameDisplay.text = SelectAgent.Name;
-                    HealthDisplay.text = SelectAgent.Health.ToString();
-                    SelectAgent.Selected = true;
-                }
             }
-            if(AgentLight!=null && AgentLight.Selected == false)
+            if(AgentLight!=null && AgentLight.Selected == false) // if selected agent was not selected, then 
             {
-                AgentLight.Selected = true;
+                AgentLight.Selected = true;// set that this agent was selected
             }
         }
     }
